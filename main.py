@@ -32,7 +32,7 @@ SHAPE_MIN_SPEED = float(os.getenv("SHAPE_MIN_SPEED", "2.0"))
 SHAPE_MAX_SPEED = float(os.getenv("SHAPE_MAX_SPEED", "8.0"))
 
 
-SITE_DIR = Path("frontend/site")
+SITE_DIR = Path("sites")
 
 
 class TokenRequest(BaseModel):
