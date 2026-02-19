@@ -13,6 +13,7 @@ import jwt
 import numpy as np
 from fastapi import FastAPI, HTTPException, Query, WebSocket, WebSocketDisconnect
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 
@@ -29,6 +30,9 @@ SHAPE_MIN_SIZE = int(os.getenv("SHAPE_MIN_SIZE", "25"))
 SHAPE_MAX_SIZE = int(os.getenv("SHAPE_MAX_SIZE", "120"))
 SHAPE_MIN_SPEED = float(os.getenv("SHAPE_MIN_SPEED", "2.0"))
 SHAPE_MAX_SPEED = float(os.getenv("SHAPE_MAX_SPEED", "8.0"))
+
+
+SITE_DIR = Path("frontend/site")
 
 
 class TokenRequest(BaseModel):
@@ -231,3 +235,7 @@ async def stream_ws(websocket: WebSocket, token: str = Query(...)) -> None:
         return
     except Exception:
         await websocket.close(code=1011)
+
+
+if SITE_DIR.exists():
+    app.mount("/", StaticFiles(directory=SITE_DIR, html=True), name="site")
