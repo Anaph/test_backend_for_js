@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MJPEG WS Viewer</title>
+    <script type="module" src="/src/main.ts"></script>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>MJPEG WebSocket Viewer</h1>
+      <form id="authForm" class="panel">
+        <label>
+          User ID
+          <input id="userId" value="frontend-dev" />
+        </label>
+        <button type="submit">Получить JWT</button>
+      </form>
+
+      <section class="panel">
+        <label>
+          Token
+          <textarea id="token" rows="3" placeholder="JWT token"></textarea>
+        </label>
+        <button id="connectBtn">Подключиться к стриму</button>
+      </section>
+
+      <section class="panel">
+        <p id="status">Статус: idle</p>
+        <canvas id="canvas" width="1280" height="720"></canvas>
+      </section>
+    </main>
+  </body>
+</html>
